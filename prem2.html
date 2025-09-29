@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kissan Premium Jam Flavours — Fables Collection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-font: 'Poppins', sans-serif;
+      --heading-font: 'Playfair Display', serif;
+      --card-bg: #ffffff;
+      --text-color: #333;
+      --brand-color: #d92d3a;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --transition-speed: 0.3s;
+
+      --gradient-strawberry: linear-gradient(to top, rgba(217, 45, 58, 0.2), transparent);
+      --gradient-apricot: linear-gradient(to top, rgba(243, 156, 18, 0.2), transparent);
+      --gradient-blueberry: linear-gradient(to top, rgba(82, 48, 147, 0.2), transparent);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--primary-font);
+      background-color: #fdfaf6;
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-family: var(--heading-font);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: var(--brand-color);
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    header p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .product-card {
+      background-color: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px var(--shadow-color);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(20px);
+      opacity: 0;
+      transition:
+        transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+        opacity var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      will-change: transform, box-shadow, opacity;
+    }
+
+    .product-card.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Hover effect on the whole card */
+    .product-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      transition:
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+    }
+
+    /* Product image container */
+    .product-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid #eee;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+
+    /* Zoom in image on hover */
+    .product-card:hover .product-image {
+      transform: scale(1.1);
+    }
+
+    .product-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-content h2 {
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--brand-color);
+    }
+
+    .product-content p {
+      flex: 1;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .product-content .btn {
+      align-self: start;
+      background-color: var(--brand-color);
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background-color var(--transition-speed);
+    }
+
+    .product-content .btn:hover {
+      background-color: #b52228;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .product-card,
+      .product-image,
+      .product-card:hover {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+
+    .back {
+      color: white;
+      background-color: black;
+      height: 30px;
+      width: 60px;
+      border-radius: 5px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 30px;
+      margin-bottom: 2rem;
+      display: inline-block;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .back:hover {
+      background-color: #222;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Focus styles for accessibility */
+    .btn:focus,
+    .back:focus {
+      outline: 2px solid var(--brand-color);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kissan Premium Jam — Fables Collection</h1>
+    <p>Discover the delicate and delightful flavours inspired by tales and fruits.</p>
+  </header>
+
+  <a href="main.html" class="back" tabindex="0">Home</a>
+
+  <div class="product-grid">
+    <!-- Strawberry & Raspberry -->
+    <div class="product-card">
+      <div
+        class="product-image"
+        style="background-image: var(--gradient-strawberry), url('str1.jfif');"
+      ></div>
+      <div class="product-content">
+        <h2>Strawberry & Raspberry</h2>
+        <p>A blend of juicy strawberries and tart raspberries — fruity, sweet, full of character.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <!-- Apricot & Peach -->
+    <div class="product-card">
+      <div
+        class="product-image"
+        style="background-image: var(--gradient-apricot), url('app1.jfif');"
+      ></div>
+      <div class="product-content">
+        <h2>Apricot & Peach</h2>
+        <p>Soft apricot sweetness meets sun-kissed peach — smooth and luscious.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+
+    <!-- Blueberry & Violet -->
+    <div class="product-card">
+      <div
+        class="product-image"
+        style="background-image: var(--gradient-blueberry), url('blueber.jfif');"
+      ></div>
+      <div class="product-content">
+        <h2>Blueberry & Violet</h2>
+        <p>Deep blueberry notes accentuated by delicate violet petals — whimsical and elegant.</p>
+        <a href="#" class="btn">Explore</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Animate cards when they appear in the viewport
+    document.addEventListener('DOMContentLoaded', function () {
+      const cards = document.querySelectorAll('.product-card');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          root: null,
+          threshold: 0.2,
+        }
+      );
+      cards.forEach((card) => observer.observe(card));
+    });
+  </script>
+</body>
+</html>

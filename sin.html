@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kissan Jam - Sign Up</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffe9d6, #fefcea);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      background-image: url(far.jpg);
+    }
+
+    .signup-container {
+      background: white;
+      padding: 2.5rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(217, 43, 47, 0.25);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .signup-container h2 {
+      color: #d92b2f;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      font-size: 2.2rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .signup-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 12px 15px;
+      border: 2px solid #d92b2f;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #ff9800;
+      box-shadow: 0 0 8px #ff9800aa;
+    }
+
+    button {
+      padding: 14px;
+      background-color: #d92b2f;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(217, 43, 47, 0.5);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background-color: #b92022;
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(185, 31, 33, 0.7);
+    }
+
+    .error-msg {
+      color: #d92b2f;
+      font-size: 0.9rem;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      display: none;
+      text-align: left;
+    }
+
+    .footer-text {
+      margin-top: 1.8rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .footer-text a {
+      color: #d92b2f;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .footer-text a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .signup-container {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Kissan Jam Sign Up</h2>
+    <form id="signupForm" novalidate>
+      <input type="text" id="name" placeholder="Full Name" required />
+      <div class="error-msg" id="nameError">Please enter your name</div>
+
+      <input type="email" id="email" placeholder="Email Address" required />
+      <div class="error-msg" id="emailError">Please enter a valid email</div>
+
+      <input type="password" id="password" placeholder="Password" required minlength="6" />
+      <div class="error-msg" id="passwordError">Password must be at least 6 characters</div>
+
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+      <div class="error-msg" id="confirmPasswordError">Passwords do not match</div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="footer-text">
+      Already have an account? <a href="login.html">Login here</a>
+    </div>
+  </div>
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Reset errors
+      nameError.style.display = 'none';
+      emailError.style.display = 'none';
+      passwordError.style.display = 'none';
+      confirmPasswordError.style.display = 'none';
+
+      let valid = true;
+
+      // Name validation
+      if (nameInput.value.trim() === '') {
+        nameError.style.display = 'block';
+        valid = false;
+      }
+
+      // Email validation
+      if (!validateEmail(emailInput.value.trim())) {
+        emailError.style.display = 'block';
+        valid = false;
+      }
+
+      // Password validation
+      if (passwordInput.value.length < 6) {
+        passwordError.style.display = 'block';
+        valid = false;
+      }
+
+      // Confirm password validation
+      if (confirmPasswordInput.value !== passwordInput.value || confirmPasswordInput.value === '') {
+        confirmPasswordError.style.display = 'block';
+        valid = false;
+      }
+
+      if (valid) {
+        // Normally send data to backend here
+        alert('Signup successful!');
+        signupForm.reset();
+      }
+    });
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+  </script>
+</body>
+</html>

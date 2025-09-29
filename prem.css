@@ -1,0 +1,126 @@
+/* Basic Setup and Font Imports */
+:root {
+    --primary-font: 'Poppins', sans-serif;
+    --heading-font: 'Playfair Display', serif;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --brand-color: #d92d3a;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: #fdfaf6;
+    margin: 0;
+    padding: 2rem;
+    color: var(--text-color);
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-family: var(--heading-font);
+    font-size: 3rem;
+    color: var(--brand-color);
+    margin: 0;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Product Grid Layout */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Product Card Styling */
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow-color);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0; /* Initially hidden for JS animation */
+    transform: translateY(20px); /* Initially moved down for JS animation */
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Product Image Section */
+.product-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Specific Images for each flavour */
+/* NOTE: Replace these placeholder colors with actual image URLs */
+.strawberry-raspberry {
+    background-image: linear-gradient(to top, rgba(217, 45, 58, 0.2), transparent), url('https://images.unsplash.com/photo-1588636230104-f85a1b392a4a?q=80&w=800');
+}
+.apricot-peach {
+    background-image: linear-gradient(to top, rgba(243, 156, 18, 0.2), transparent), url('https://images.unsplash.com/photo-1629838029532-65561e12782a?q=80&w=800');
+}
+.blueberry-mulberry {
+    background-image: linear-gradient(to top, rgba(82, 48, 147, 0.2), transparent), url('https://images.unsplash.com/photo-1498568625299-6d80415a782d?q=80&w=800');
+}
+
+/* Product Info Section */
+.product-info {
+    padding: 1.5rem;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.product-description {
+    color: #555;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.product-button {
+    background-color: var(--brand-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+
+.product-button:hover {
+    background-color: #b82430;
+}
+.back{
+    background-color: #b92326;
+    border-radius: 40px;
+    height: 30px;
+    width: 50px;
+    color: black;
+}
